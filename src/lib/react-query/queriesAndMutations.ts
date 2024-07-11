@@ -217,10 +217,14 @@ import {
   // ============================================================
   
   export const useGetCurrentUser = () => {
-    return useQuery({
+    // console.log(getCurrentUser);
+    // console.log(QUERY_KEYS);
+      let a = useQuery({
       queryKey: [QUERY_KEYS.GET_CURRENT_USER],
       queryFn: getCurrentUser,
     });
+    console.log(a); 
+    return a;
   };
   
   export const useGetUsers = (limit?: number) => {

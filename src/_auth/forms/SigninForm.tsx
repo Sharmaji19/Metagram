@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form"
 import { SigninValidation } from "@/lib/validation"
 import Loader from "@/components/shared/Loader"
 import { useToast } from "@/components/ui/use-toast"
-import {  useSignInAccount } from "@/lib/react-query/queriesAndMutations";
+import { useSignInAccount } from "@/lib/react-query/queriesAndMutations";
 import { useUserContext } from "@/context/AuthContext";
 
  
@@ -102,7 +102,10 @@ function SigninForm() {
             ): "Sign In"}
           </Button>
           <p className="text-small-regular text-light-2 text-center mt-2" >
-           Don't have an account?
+          <Link to={"/forget-password"} className='text text-primary-500 text-small-semibold ml-1'>
+            forget password{"\t"} 
+          </Link>
+           {"\t"}Don't have an account?
             <Link to={"/sign-up"} className="text-primary-500 text-small-semibold ml-1">
               Sign Up
             </Link>

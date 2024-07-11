@@ -1,12 +1,12 @@
 import {Routes, Route} from 'react-router-dom';
 import './globals.css'
-import { AllUsers, CreatePost, EditPost, Explore, Home,
- PostDetails, Profile, Saved, UpdateProfile } from './_root/Pages';
+import { AllUsers, CreatePost, EditPost, Explore, Home, PostDetails, Profile, Saved, UpdateProfile } from './_root/Pages';
 import SigninForm from './_auth/forms/SigninForm';
 import SignupForm from './_auth/forms/SignupForm';
 import AuthLayout from './_auth/AuthLayout';
 import RootLAyout from './_root/RootLAyout';
 import { Toaster } from "@/components/ui/toaster"
+import ForgetPassword from './_root/Pages/ForgetPassword';
 
 
 const App = () => {
@@ -17,6 +17,7 @@ const App = () => {
         <Route element = {<AuthLayout />}>
             <Route path = "/sign-in" element={<SigninForm />}/>
             <Route path = "/sign-up" element={<SignupForm />}/>
+            <Route path="/forget-password" element={<ForgetPassword/>} />
         </Route>
 
     {/* private routes */}
@@ -27,7 +28,7 @@ const App = () => {
                 <Route   path="/all-users" element={<AllUsers/>}/>
                 <Route   path="/create-post" element={<CreatePost/>}/>
                 <Route   path="/update-post/:id" element={<EditPost/>}/>
-                <Route   path="/posts/:id" element={<PostDetails/>}/>
+                <Route   path="/post/:id" element={<PostDetails/>}/>
                 <Route   path="/profile/:id/*" element={<Profile/>}/>
                 <Route   path="/update-profile/:id" element={<UpdateProfile/>}/>
             </Route>

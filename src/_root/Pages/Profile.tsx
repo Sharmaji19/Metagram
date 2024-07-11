@@ -5,6 +5,7 @@ import { useUserContext } from "@/context/AuthContext";
 import { useGetUserById } from "@/lib/react-query/queriesAndMutations";
 import { Link, Outlet, Route, Routes, useLocation, useParams } from "react-router-dom"
 import { LikedPosts } from ".";
+import { useState } from "react";
 
 interface  StabBlockProps{
   value: string | number ;
@@ -17,6 +18,45 @@ const StatBlock = ({ value, label }: StabBlockProps) =>(
       <p className="small-medium lg:base-medium text-light-2">{label}</p>
     </div>
 );
+
+interface State {
+  followers:number;
+  isFollowing: boolean;
+}
+const HandleFollowers = () => {
+
+  const [state, setState] = useState<State>({
+      followers: 0,
+      isFollowing: false,
+    });
+  
+    const handleFollow = () => {
+      setState((prevState) => ({
+        followers: prevState.followers + 1,
+        isFollowing: true,
+      }));
+    };
+  
+    const handleUnfollow = () => {
+      setState((prevState) => ({
+        followers: prevState.followers > 0 ? prevState.followers - 1 : 0,
+        isFollowing: false,
+      }));
+    };
+  
+
+return (
+ <div>
+    <p>Followers: {state.followers}</p>
+    {state.isFollowing ? (
+      <button onClick={handleUnfollow}>Unfollow</button>
+    ) : (
+      <button onClick={handleFollow}>Follow</button>
+    )}
+  </div>
+)
+}
+
 
 const Profile = () => {
 
@@ -51,8 +91,8 @@ const Profile = () => {
             </div>
             <div className="flex gap-8 mt-7 items-cneter justify-center xl:justify-start flex-wrap z-20">
               <StatBlock value={currentUser.posts.length} label="posts" />
-              <StatBlock value={20} label="followers" />
-              <StatBlock value={10} label="following" />
+              <StatBlock value={1} label="followers" />
+              <StatBlock value={1} label="following" />
             </div>
 
             <p className="small-medium md:base-medium text-center xl:text-left mt-7 max-w-screen-sm">
